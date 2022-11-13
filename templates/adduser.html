@@ -1,0 +1,41 @@
+{% extends "base.html" %} 
+
+{% block content %}
+    {% if name %} 
+        <h1>Hello, {{ name }}!</h1><br> 
+        <h2>Welcome to Maria Clara Solutions.</h2>
+        <br>
+    {% else %}        
+        <h1>Add User</h1>
+        <div class="shadow p-3 mb-5 bg-body rounded">
+            <form action="" method="POST" >
+                {{ form.hidden_tag() }}
+                
+                {{ form.name.label }}<br/>
+                {{ form.name(class="form-control") }}<br/>
+                {% if form.name.errors %}
+                    <ul class="errors">
+                    {% for error in form.name.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+    
+
+                {{ form.email.label }}<br/>
+                {{ form.email(class="form-control") }}<br/>
+                {% if form.email.errors %}
+                    <ul class="errors">
+                    {% for error in form.email.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+
+
+                {{ form.submit(class="btn btn-primary") }}
+            </form>
+            
+        </div>
+    {% endif %} 
+{% endblock %}

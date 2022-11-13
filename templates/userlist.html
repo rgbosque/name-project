@@ -1,0 +1,57 @@
+{% extends "base.html" %} 
+
+{% block content %}
+    
+    <table class="table table-hover table-striped table-bordered caption-top">
+        <caption>List of Users: </caption>
+            <!-- {{ users.first }} - {{ users.last }} of {{ users.total }} -->
+        <tr>
+            <th>User ID</th>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+        {% for user in users %} 
+            <tr>
+                <td>{{ user.id }}</td>    
+                <td>{{ user.name }}</td> 
+                <td>{{ user.email }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <!-- {# if prev_url #} 
+        <a href="{{ prev_url }}">Prev | </a>
+    {# endif #} 
+    {# if next_url #} 
+        <a href="{{ next_url }}">Next</a>
+    {# endif #}  -->
+    <nav aria-label="Page navigation example">
+        <!-- <div class=page-items>
+            {{ users.first }} - {{ users.last }} of {{ users.total }}
+        </div> -->
+
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="{% if prev_url %} {{ prev_url }} {% endif %}">Previous</a>
+            </li>
+          
+          
+            {% for page in users.iter_pages() %}
+                {% if page %}
+                    {% if page != users.page %}
+                        <li class="page-item"><a class="page-link" href="{{ url_for("user_list", page=page) }}">{{ page }}</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="{{ url_for("user_list", page=page) }}"><strong>{{ page }}</strong></a></li>            
+                    {% endif %}
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="{{ url_for("user_list", page=page) }}"><span class=ellipsis>…</span></strong></a></li>
+                {% endif %}
+            {% endfor %} 
+          
+
+            <li class="page-item">
+                <a class="page-link" href="{% if next_url %} {{ next_url }} {% endif %} ">Next</a>
+            </li>
+        </ul>
+     </nav>
+     
+{% endblock %}

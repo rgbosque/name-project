@@ -1,0 +1,17 @@
+/* h1 {
+    color: darkblue;
+    font-size: 10px;
+} */
+
+body {
+    background: #f4f4f4;
+}
+
+small {
+    color: rgb(160, 155, 155);
+}
+
+#developername {
+    font-size: 13px;
+    color: rgb(160, 155, 155);
+}
